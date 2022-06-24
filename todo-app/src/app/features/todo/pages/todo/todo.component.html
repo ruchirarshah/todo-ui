@@ -1,0 +1,10 @@
+<div class="flex-center">
+  <div>{{ todo.TaskName }}</div>
+  <div>
+    <!-- <span>---isComplete?{{ todo.IsComplete }}---</span> -->
+    <button (click)="updateTaskAsComplete(todo.Id)">Mark as Complete</button>
+  </div>
+  <div>
+    <button (click)="deleteTask(todo.Id)">Delete the task</button>
+  </div>
+</div>

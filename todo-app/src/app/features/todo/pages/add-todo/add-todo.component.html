@@ -1,0 +1,7 @@
+<form [formGroup]="todoForm" class="flex-center">
+  <div>Add a new task</div>
+  <div>
+    <input type="text" formControlName="taskName" />
+    <button (click)="addTodoTask()">Add Todo</button>
+  </div>
+</form>

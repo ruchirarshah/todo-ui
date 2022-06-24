@@ -1,0 +1,9 @@
+<div>
+  <!-- Header -->
+  <div class="flex-center">
+    <div class="page-title">Welcome to TODO App</div>
+  </div>
+  <app-add-todo (todoAdded)="onTodoAdded($event)"></app-add-todo>
+  <!-- Todo-List -->
+  <app-todo-list [todoList]="todoList"></app-todo-list>
+</div>

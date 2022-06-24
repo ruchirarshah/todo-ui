@@ -1,0 +1,5 @@
+<div>
+  <div *ngFor="let item of todoList | async">
+    <app-todo [todo]="item" (todoUpdated)="refreshTodoList()"></app-todo>
+  </div>
+</div>
