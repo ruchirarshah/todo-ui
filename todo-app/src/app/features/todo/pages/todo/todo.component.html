@@ -9,12 +9,20 @@
       </p>
     </section>
   </div>
-  <div [ngClass]="todo.IsComplete ? 'todo-complete' : 'todo-incomplete'">
-    {{ todo.TaskName }}
+  <div
+    [formGroup]="todoForm"
+    [ngClass]="todo.IsComplete ? 'todo-complete' : 'todo-incomplete'"
+  >
+    <input matInput formControlName="TaskName" />
   </div>
   <section>
     <button mat-button (click)="deleteTask(todo.Id)" mat-button color="accent">
       <mat-icon>delete</mat-icon>
+    </button>
+  </section>
+  <section>
+    <button mat-button (click)="updateTask(todo.Id)" mat-button color="accent">
+      <mat-icon>edit</mat-icon>
     </button>
   </section>
 </div>

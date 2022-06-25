@@ -11,7 +11,10 @@ import { ManageTodoService } from '../../services/manage-todo.service';
 export class TodoComponent implements OnInit {
   todoForm: FormGroup;
   constructor(private fb: FormBuilder, private todoService: ManageTodoService) {
-    this.todoForm = this.fb.group({ todoComplete: new FormControl('') });
+    this.todoForm = this.fb.group({
+      todoComplete: new FormControl(''),
+      TaskName: new FormControl(''),
+    });
   }
   @Output() todoUpdated = new EventEmitter<boolean>();
   private _todo: Todo = <Todo>{};
@@ -26,6 +29,7 @@ export class TodoComponent implements OnInit {
     if (this.todo.IsComplete) {
       this.todoForm.get('todoComplete')?.setValue(true);
     }
+    this.todoForm.get('TaskName')?.setValue(this.todo.TaskName);
   }
   updateTaskAsComplete(id: number, taskStatus: boolean) {
     this.todoService.updateTodoAsComplete(id, taskStatus).subscribe((x) => {
@@ -39,6 +43,12 @@ export class TodoComponent implements OnInit {
     });
   }
 
+  updateTask(id: number) {
+    const taskName = this.todoForm.get('TaskName')?.value;
+    this.todoService.updateTaskName(id, taskName).subscribe((x) => {
+      this.todoUpdated.emit(true);
+    });
+  }
   onCompleteCheck(data: any) {
     if (data.checked === true) {
       this.updateTaskAsComplete(this.todo.Id, true);

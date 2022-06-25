@@ -25,4 +25,10 @@ export class ManageTodoService {
   deleteTodoTask(id: number) {
     return this.http.put(this.apiURL + 'Update', { Id: id, IsDeleted: true });
   }
+  updateTaskName(id: number, TaskName: string) {
+    return this.http.put(this.apiURL + 'Update', {
+      Id: id,
+      TaskName: TaskName,
+    });
+  }
 }
