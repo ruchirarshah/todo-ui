@@ -15,8 +15,11 @@ export class ManageTodoService {
     return this.http.post(this.apiURL + 'Add', { TaskName: taskName });
   }
 
-  updateTodoAsComplete(id: number) {
-    return this.http.put(this.apiURL + 'Update', { Id: id, IsComplete: true });
+  updateTodoAsComplete(id: number, todoComplete: boolean) {
+    return this.http.put(this.apiURL + 'Update', {
+      Id: id,
+      IsComplete: todoComplete,
+    });
   }
 
   deleteTodoTask(id: number) {

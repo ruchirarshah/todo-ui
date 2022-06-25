@@ -11,7 +11,11 @@ import { TodoContainerComponent } from './features/todo/pages/todo-container/tod
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInput, MatInputModule } from '@angular/material/input';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,11 @@ import { MatInput, MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     HttpClientModule,
     MatInputModule,
+    MatButtonModule,
+    MatListModule,
+    MatDividerModule,
+    MatCheckboxModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

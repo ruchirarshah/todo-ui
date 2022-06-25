@@ -1,5 +1,10 @@
 <div>
-  <div *ngFor="let item of todoList | async">
-    <app-todo [todo]="item" (todoUpdated)="refreshTodoList()"></app-todo>
-  </div>
+  <mat-list>
+    <div *ngFor="let item of todoList | async">
+      <mat-list-item>
+        <app-todo [todo]="item" (todoUpdated)="refreshTodoList()"></app-todo>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </div>
+  </mat-list>
 </div>

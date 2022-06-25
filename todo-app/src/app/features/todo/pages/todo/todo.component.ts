@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Todo } from '../../models/Todo.interface';
 import { ManageTodoService } from '../../services/manage-todo.service';
 
@@ -8,7 +9,10 @@ import { ManageTodoService } from '../../services/manage-todo.service';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent implements OnInit {
-  constructor(private todoService: ManageTodoService) {}
+  todoForm: FormGroup;
+  constructor(private fb: FormBuilder, private todoService: ManageTodoService) {
+    this.todoForm = this.fb.group({ todoComplete: new FormControl('') });
+  }
   @Output() todoUpdated = new EventEmitter<boolean>();
   private _todo: Todo = <Todo>{};
   public get todo(): Todo {
@@ -18,10 +22,14 @@ export class TodoComponent implements OnInit {
   public set todo(value: Todo) {
     this._todo = value;
   }
-  ngOnInit(): void {}
-  updateTaskAsComplete(id: number) {
-    this.todoService.updateTodoAsComplete(id).subscribe((x) => {
-      this.todoUpdated.emit(true);
+  ngOnInit(): void {
+    if (this.todo.IsComplete) {
+      this.todoForm.get('todoComplete')?.setValue(true);
+    }
+  }
+  updateTaskAsComplete(id: number, taskStatus: boolean) {
+    this.todoService.updateTodoAsComplete(id, taskStatus).subscribe((x) => {
+      this.todoUpdated.emit(taskStatus);
     });
   }
 
@@ -29,5 +37,13 @@ export class TodoComponent implements OnInit {
     this.todoService.deleteTodoTask(id).subscribe((x) => {
       this.todoUpdated.emit(true);
     });
+  }
+
+  onCompleteCheck(data: any) {
+    if (data.checked === true) {
+      this.updateTaskAsComplete(this.todo.Id, true);
+    } else {
+      this.updateTaskAsComplete(this.todo.Id, false);
+    }
   }
 }

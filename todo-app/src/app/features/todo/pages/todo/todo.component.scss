@@ -1,0 +1,13 @@
+.example-section {
+  margin: 10px;
+}
+
+.todo-complete {
+  text-decoration: line-through;
+  font-style: italic;
+  color: lightgrey;
+}
+
+.todo-incomplete {
+  text-decoration: none !important;
+}
